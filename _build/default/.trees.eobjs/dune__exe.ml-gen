@@ -1,0 +1,11 @@
+(** @canonical Dune__exe.Anything_goes *)
+module Anything_goes = Dune__exe__Anything_goes
+
+(** @canonical Dune__exe.Data_objects *)
+module Data_objects = Dune__exe__Data_objects
+
+(** @canonical Dune__exe.Recursive *)
+module Recursive = Dune__exe__Recursive
+
+(** @canonical Dune__exe.Trees *)
+module Trees = Dune__exe__Trees
