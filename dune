@@ -1,2 +1,2 @@
 (executable
- (name trees))
+ (name data_objects))

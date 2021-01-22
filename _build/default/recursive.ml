@@ -5,7 +5,7 @@ let range a b =
     | false -> aux a (b-1) (b :: acc)
   in
   match a > b with
-  | true -> List.rev (aux b a [])
+  | true -> (aux b a []) |> List.rev
   | false -> aux a b []
 
 let repeat a b =
