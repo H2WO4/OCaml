@@ -121,4 +121,4 @@ for i = 1 to 10 do
   i >- newStack
 done
 
-let () = let x = ~< newStack in print_int x
+let () = print_int ~< newStack

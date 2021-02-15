@@ -7,7 +7,6 @@ let range a b =
   match a > b with
   | true -> (aux b a []) |> List.rev
   | false -> aux a b []
-
 let repeat a b =
   let rec aux elem times acc =
     match times with
@@ -15,8 +14,6 @@ let repeat a b =
     | _ -> aux elem (times-1) (elem :: acc)
   in
   aux a b []
-
-
 
 let rec fibonnacci a =
   match a with

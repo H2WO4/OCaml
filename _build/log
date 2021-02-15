@@ -1,9 +1,9 @@
-# C:\OCaml\home\arthu\.opam\4.11.1+mingw64c\bin\dune.exe exec ./data_objects.exe
+# C:\OCaml\home\arthu\.opam\4.11.1+mingw64c\bin\dune.exe build
 # OCAMLPARAM: unset
 # Workspace root: "C:\\OCaml\\home\\arthu\\OCaml"
 # Auto-detected concurrency: 4
 # disable binary cache
-$ C:\OCaml\home\arthu\.opam\4.11.1+mingw64c\bin\ocamlc.opt.exe -config > C:\OCaml\tmp\dune296273.output
+$ C:\OCaml\home\arthu\.opam\4.11.1+mingw64c\bin\ocamlc.opt.exe -config > C:\OCaml\tmp\dune50e39a.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -124,4 +124,3 @@ $ C:\OCaml\home\arthu\.opam\4.11.1+mingw64c\bin\ocamlc.opt.exe -config > C:\OCam
 #      ; windows_unicode = true
 #      }
 #  }
-# Workspace root: "C:\\OCaml\\home\\arthu\\OCaml"

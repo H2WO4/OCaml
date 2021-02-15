@@ -7,7 +7,6 @@ let range a b =
   match a > b with
   | true -> (aux b a []) |> List.rev
   | false -> aux a b []
-
 let range_oper a b (f : int -> int) =
   let rec aux min max func acc =
     match max < min with
@@ -17,7 +16,6 @@ let range_oper a b (f : int -> int) =
   match a > b with
   | true -> aux b a f []
   | false -> (aux a b f []) |> List.rev
-
 let repeat a b =
   let rec aux elem times acc =
     match times with
@@ -25,36 +23,27 @@ let repeat a b =
     | _ -> aux elem (times-1) (elem :: acc)
   in
   aux a b []
-
-let factorial a =
-  List.fold_left ( * ) 1 (range 1 a)
-
-let power a b =
-  int_of_float (float a ** float b)
-
+let factorial a = List.fold_left ( * ) 1 (range 1 a)
+let power a b = int_of_float (float a ** float b)
 let rec last_elem l =
   match l with
   | [] -> failwith "last_elem called on empty list"
   | [x] -> x
   | _ :: tl -> last_elem tl
-
 let rec max_elem l =
   match l with
   | [] -> failwith "max_elem called on empty list"
   | [x] -> x
   | hd :: tl -> max hd (max_elem tl)
-
 let rec min_elem l =
   match l with
   | [] -> failwith "min_elem called on empty list"
   | [x] -> x
   | hd :: tl -> min hd (min_elem tl)
-
 let rec duplicate l =
   match l with
   | [] -> []
   | hd :: tl -> hd :: hd :: duplicate tl
-
 let list_divisors a =
   let rec aux n m acc =
     match n mod m with
@@ -63,7 +52,6 @@ let list_divisors a =
     | _ -> aux n (m-1) acc
   in
   List.sort compare (aux a (a |> float |> sqrt |> truncate) [])
-
 let is_prime a =
   let rec aux n m =
     match n mod m with
@@ -72,17 +60,14 @@ let is_prime a =
     | _ -> aux n (m-1)
   in
   aux a (a |> float |> sqrt |> truncate)
-
 let rec gcd a b =
   match b with
   | 0 -> a
   | _ -> gcd b (a mod b)
-
 let coprime a b =
   match gcd a b with
   | 1 -> true
   | _ -> false
-
 let totient a =
   let rec aux n m acc =
     match m with
