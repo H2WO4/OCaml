@@ -71,12 +71,6 @@ let find_chr txt need =
   in
   String.index_from (String.map (equal need) txt) 0 '1'
 
-let rec min_elem l =
-  match l with
-  | [] -> failwith "min_elem called on empty list"
-  | [x] -> x
-  | hd :: tl -> min hd (min_elem tl)
-
 let palindrome txt =
   let ltxt = List.of_seq (String.to_seq (String.lowercase_ascii txt)) in
    if List.rev ltxt = ltxt then
