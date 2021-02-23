@@ -40,4 +40,4 @@ let order a =
     else
       aux l (x+1)
   in
-  aux a 
+  aux a
