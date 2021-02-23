@@ -1,0 +1,8 @@
+(** @canonical Dune__exe.Divers *)
+module Divers = Dune__exe__Divers
+
+(** @canonical Dune__exe.Dm1 *)
+module Dm1 = Dune__exe__Dm1
+
+(** @canonical Dune__exe.Td1 *)
+module Td1 = Dune__exe__Td1
