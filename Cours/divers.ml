@@ -5,6 +5,3 @@ let zone x y =
   | _, _ -> 'b'
 
 let () = Printf.printf "%c" (zone 0.5 1.)
-
-let newAnd a b =
-  match 

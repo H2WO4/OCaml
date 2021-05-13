@@ -154,20 +154,20 @@ let hiragana str =
     | 'n'::'e'::tl -> "ね" ^ convert tl
     | 'n'::'o'::tl -> "の" ^ convert tl
 
-    | 'n'::'n'::'a'::tl -> "っな" ^ convert tl
-    | 'n'::'n'::'i'::tl -> "っに" ^ convert tl
-    | 'n'::'n'::'u'::tl -> "っぬ" ^ convert tl
-    | 'n'::'n'::'e'::tl -> "っね" ^ convert tl
-    | 'n'::'n'::'o'::tl -> "っの" ^ convert tl
+    | 'n'::'n'::'a'::tl -> "んな" ^ convert tl
+    | 'n'::'n'::'i'::tl -> "んに" ^ convert tl
+    | 'n'::'n'::'u'::tl -> "んぬ" ^ convert tl
+    | 'n'::'n'::'e'::tl -> "んね" ^ convert tl
+    | 'n'::'n'::'o'::tl -> "んの" ^ convert tl
 
 
     | 'n'::'y'::'a'::tl -> "にゃ" ^ convert tl
     | 'n'::'y'::'u'::tl -> "にゅ" ^ convert tl
     | 'n'::'y'::'o'::tl -> "にょ" ^ convert tl
 
-    | 'n'::'n'::'y'::'a'::tl -> "っにゃ" ^ convert tl
-    | 'n'::'n'::'y'::'u'::tl -> "っにゅ" ^ convert tl
-    | 'n'::'n'::'y'::'o'::tl -> "っにょ" ^ convert tl
+    | 'n'::'n'::'y'::'a'::tl -> "んにゃ" ^ convert tl
+    | 'n'::'n'::'y'::'u'::tl -> "んにゅ" ^ convert tl
+    | 'n'::'n'::'y'::'o'::tl -> "んにょ" ^ convert tl
 
 
     | 'h'::'a'::tl -> "は" ^ convert tl
@@ -304,9 +304,6 @@ let hiragana str =
     | ' '::'w'::'a'::' '::tl -> "は" ^ convert tl
     | ' '::'w'::'a'::[] -> "は"
 
-    | ' '::'o'::' '::tl -> "を" ^ convert tl
-    | ' '::'o'::[] -> "を"
-
     | ' '::'e'::' '::tl -> "へ" ^ convert tl
     | ' '::'e'::[] -> "へ"
   
@@ -315,13 +312,16 @@ let hiragana str =
     | ')'::tl -> "」" ^ convert tl
     | '['::tl -> "『" ^ convert tl
     | ']'::tl -> "』" ^ convert tl
+    | ','::tl -> "、" ^ convert tl
+    | '.'::tl -> "。" ^ convert tl
+    | '?'::tl -> "？" ^ convert tl
+    | '!'::tl -> "！" ^ convert tl
 
-
+    | '\n'::tl -> "\n" ^ convert tl
     | _::tl -> convert tl
     | _ -> ""
   in
-  let lstr = List.of_seq (String.to_seq str) in
-  convert lstr
+  convert (List.of_seq (String.to_seq str))
 
 let katakana str =
   let rec convert l =
@@ -502,17 +502,24 @@ let katakana str =
     | 'd'::'d'::'o'::tl -> "ッド" ^ convert tl
 
 
+    | 'd'::'h'::'i'::tl -> "ディ" ^ convert tl
+    | 'd'::'h'::'u'::tl -> "デュ" ^ convert tl
+    
+    | 'd'::'d'::'h'::'i'::tl -> "ッディ" ^ convert tl
+    | 'd'::'d'::'h'::'u'::tl -> "ッデユ" ^ convert tl
+
+
     | 'n'::'a'::tl -> "ナ" ^ convert tl
     | 'n'::'i'::tl -> "ニ" ^ convert tl
     | 'n'::'u'::tl -> "ヌ" ^ convert tl
     | 'n'::'e'::tl -> "ネ" ^ convert tl
     | 'n'::'o'::tl -> "ノ" ^ convert tl
 
-    | 'n'::'n'::'a'::tl -> "ッナ" ^ convert tl
-    | 'n'::'n'::'i'::tl -> "ッニ" ^ convert tl
-    | 'n'::'n'::'u'::tl -> "ッヌ" ^ convert tl
-    | 'n'::'n'::'e'::tl -> "ッネ" ^ convert tl
-    | 'n'::'n'::'o'::tl -> "ッノ" ^ convert tl
+    | 'n'::'n'::'a'::tl -> "ンナ" ^ convert tl
+    | 'n'::'n'::'i'::tl -> "ンニ" ^ convert tl
+    | 'n'::'n'::'u'::tl -> "ンヌ" ^ convert tl
+    | 'n'::'n'::'e'::tl -> "ンネ" ^ convert tl
+    | 'n'::'n'::'o'::tl -> "ンノ" ^ convert tl
 
 
     | 'n'::'y'::'a'::tl -> "ニャ" ^ convert tl
@@ -520,10 +527,10 @@ let katakana str =
     | 'n'::'y'::'e'::tl -> "ニェ" ^ convert tl
     | 'n'::'y'::'o'::tl -> "ニョ" ^ convert tl
 
-    | 'n'::'n'::'y'::'a'::tl -> "ッニャ" ^ convert tl
-    | 'n'::'n'::'y'::'u'::tl -> "ッニュ" ^ convert tl
-    | 'n'::'n'::'y'::'e'::tl -> "ッニェ" ^ convert tl
-    | 'n'::'n'::'y'::'o'::tl -> "ッニョ" ^ convert tl
+    | 'n'::'n'::'y'::'a'::tl -> "ンニャ" ^ convert tl
+    | 'n'::'n'::'y'::'u'::tl -> "ンニュ" ^ convert tl
+    | 'n'::'n'::'y'::'e'::tl -> "ンニェ" ^ convert tl
+    | 'n'::'n'::'y'::'o'::tl -> "ンニョ" ^ convert tl
 
 
     | 'h'::'a'::tl -> "ハ" ^ convert tl
@@ -702,11 +709,17 @@ let katakana str =
     | ')'::tl -> "」" ^ convert tl
     | '['::tl -> "『" ^ convert tl
     | ']'::tl -> "』" ^ convert tl
+    | ','::tl -> "、" ^ convert tl
+    | '.'::tl -> "。" ^ convert tl
+    | '?'::tl -> "？" ^ convert tl
+    | '!'::tl -> "！" ^ convert tl
+    | '/'::tl -> "・" ^ convert tl
 
 
+    | '\n'::tl -> "\n" ^ convert tl
     | _::tl -> convert tl
     | _ -> ""
   in
   convert (List.of_seq (String.to_seq str))
 
-let () = Printf.printf "%s" (("ringo" |> katakana) ^ (" o kudasai" |> hiragana))
+let () = Printf.printf "%s" ((hiragana "konnichi wa, watashi no namae wa") ^ (katakana "a-sa-") ^ (hiragana "desu.\n yoroshiku onegaishimasu!"))

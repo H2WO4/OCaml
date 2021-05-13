@@ -30,6 +30,7 @@ class ['a] stack = object (_)
   method size =
     List.length values
 end
+
 class ['a] queue = object (_)
   val mutable values = ([] : 'a list)
 
@@ -47,6 +48,7 @@ class ['a] queue = object (_)
   method size =
     List.length values
 end
+
 class ['a] tower = object (_)
   val mutable values = ([] : 'a list)
 
@@ -71,6 +73,7 @@ class ['a] tower = object (_)
   method size =
     List.length values
 end
+
 class ['a] pile = object (_)
   val mutable values = ([] : 'a list)
 
@@ -97,23 +100,27 @@ class ['a] pile = object (_)
 end
 
 
+let ( >- ) a s = s#push a
+
+let ( ~< ) s = s#pop
+
 let empty_struct o =
   while o#size > 0 do
-    ignore (o#pop)
+    ignore (~< o)
   done
+
 let fold_struct f b o =
   let rec aux obj func acc =
-    match obj#pop with
+    match ~< obj with
     | x when obj#size == 0 -> func acc x
     | x -> aux obj func (func acc x)
   in
   aux o f b
+
 let rec cycle_queue (o : 'a queue) x =
   match x with
-  | 0 ->  o#push o#pop
-  | _ ->  o#push o#pop; cycle_queue o (x-1)
-let ( >- ) a s = s#push a
-let ( ~< ) s = s#pop
+  | 0 -> (~< o) >- o
+  | _ -> (~< o) >- o; cycle_queue o (x-1)
 
 let newStack = new stack;;
 
@@ -121,4 +128,4 @@ for i = 1 to 10 do
   i >- newStack
 done
 
-let () = print_int ~< newStack
+let () = print_int (fold_struct (+) 0 newStack)

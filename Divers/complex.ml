@@ -12,7 +12,7 @@ let ( ~:: ) x =
 let print_complex x =
   match x with
   | Complex(a, 0.) -> print_string (string_of_float a)
-  | Complex(0., b) -> print_string ("-i" ^ string_of_float (-.b))
+  | Complex(0., b) -> print_string ("i" ^ string_of_float b)
   | Complex(a, b) when b < 0. -> print_string (string_of_float a ^ "-i" ^ string_of_float (-.b))
   | Complex(a, b) -> print_string (string_of_float a ^ "+i" ^ string_of_float b)
 let print_complex_exp x =
