@@ -46,7 +46,7 @@ let scinder l sep =
 
 
 (* Exercice 4 *)
-(* 1) Le meilleur chemin est 5 -> -6 -> 3 -> -2 = 0*)
+(* 1) Le meilleur chemin est 5 -> -6 -> 3 -> -2 = 0 *)
 
 let rec escalier esc =
   match esc with
