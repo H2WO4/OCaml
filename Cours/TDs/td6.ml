@@ -1,5 +1,7 @@
 let (>-) = Stack.push
 let (~<) = Stack.pop
+let (>--) = Queue.push
+let (~-<) = Queue.pop
 
 let laby = [|
     13;  1;  3; 11; 13;  1;  1;  5;  5;  1;  3; 11; 13;  5;  3; 11;
@@ -81,15 +83,25 @@ let alterne s =
 let mur c d = c land d <> 0
 
 let solve x y =
-  let s = Stack.create () and lab = Array.make 256 (-1) and c = ref 0 in x >- s;
-  while Stack.length s <> 0 do
-    let n = ~< s in
-    lab.(n) <- !c; c := !c + 1;
-    if n = y then Stack.clear s;
-    List.iter (fun m -> let w = match m with | 1 -> -16 | 2 -> 1 | 4 -> 16 | 8 -> -1 | _ -> 0 in if lab.(n+w) = -1 then n+w >- s) (List.filter (fun m -> not(mur laby.(n) m)) [1; 2; 4; 8])
+  let walls n = match n with | 1 -> -16 | 2 -> 1 | 4 -> 16 | 8 -> -1 | _ -> 0 in
+  let s = Queue.create () and lab = Array.make 256 (-1) in (x, 0) >-- s;
+  while Queue.length s <> 0 do
+    match ~-< s with | n, m ->
+    lab.(n) <- m;
+    if n = y then Queue.clear s;
+    List.iter (fun o -> let w = walls o in if lab.(n+w) = -1 then (n+w, m+1) >-- s) (List.filter (fun o -> not(mur laby.(n) o)) [1; 2; 4; 8])
   done;
-  lab
+  let rec aux d m =
+    let rec prec_elem li n =
+      match li with
+      | (hd, hd2, hd3) :: tl -> if hd = n then hd, hd2, hd3 else prec_elem tl n
+      | [] -> failwith "EmptyList"
+    in
+    match prec_elem (List.map (fun o -> let w = walls o in (lab.(d+w), d+w, o)) (List.filter (fun o -> not(mur laby.(d) o)) [1; 2; 4; 8])) (m-1) with
+    | a, b, c -> (if b <> 0 then aux b a else "") ^ match c with | 1 -> "B" | 2 -> "G" | 4 -> "H" | 8 -> "D" | _ -> "_"
+  in
+  aux y lab.(y)
 
 
 let () = Random.self_init ()
-let () = Array.iter (Printf.printf "%d ") (solve 0 2)
+let () = print_string (solve 0 255)

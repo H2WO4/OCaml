@@ -59,4 +59,3 @@ let rec intervalle_entier a b =
 
 
 let () = Printf.printf "%b " ([1; 4; 1; 4] <~: [1; 3; 3; 1])
-

@@ -53,11 +53,11 @@ let pascal n =
     match n with
     | 1 ->
       for i = 1 to len - 1 do
-        Array.set arr (len-i) (arr.(len-i-1) + arr.(len-i))
+        arr.(len-i) <- (arr.(len-i-1) + arr.(len-i))
       done; Array.append arr [|1|]
     | _ ->
       for i = 1 to len - 1 do
-        Array.set arr (len-i) (arr.(len-i-1) + arr.(len-i))
+        arr.(len-i) <- (arr.(len-i-1) + arr.(len-i))
       done; print_array (Array.append arr [|1|]); print_endline "";
       aux (Array.append arr [|1|]) (n-1)
   in

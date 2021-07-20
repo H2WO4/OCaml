@@ -2,5 +2,6 @@
     "ocaml.sandbox": {
         "kind": "global",
         "switch": "4.11.1+mingw64c"
-    }
+    },
+    "python.pythonPath": "C:\\Users\\arthu\\AppData\\Local\\Programs\\Python\\Python310\\python.exe"
 }
